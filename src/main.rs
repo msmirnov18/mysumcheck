@@ -69,7 +69,4 @@ fn main() {
     // );
 
     run_sumcheck_protocol(input_polynomial.clone());
-
-    println!("");
-    println!("{:?}", degree_in_one_variable(input_polynomial.clone(), 2));
 }
