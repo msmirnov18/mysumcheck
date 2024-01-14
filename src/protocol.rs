@@ -259,9 +259,12 @@ pub fn run_sumcheck_protocol<FF: Field + std::convert::From<i32>>(
             let sum = univariate_hypercube_evaluate(provers_messages[i].clone());
 
             if sum == c {
-                // degree check not implemented! TODO
-                // generating a new random number
-                random_challenges = [random_challenges, vec![verifier.message()]].concat();
+                if provers_messages[i].clone().degree()
+                    <= degree_in_one_variable(verifier.polynomial.clone(), i)
+                {
+                    // generating a new random number
+                    random_challenges = [random_challenges, vec![verifier.message()]].concat();
+                }
             } else {
                 println!("Check in round {} failed", i + 1);
                 break;
@@ -270,9 +273,12 @@ pub fn run_sumcheck_protocol<FF: Field + std::convert::From<i32>>(
             if univariate_hypercube_evaluate(provers_messages[i].clone())
                 == provers_messages[i - 1].evaluate(&random_challenges[i - 1])
             {
-                // degree check not implemented! TODO
-                // generating a new random number
-                random_challenges = [random_challenges, vec![verifier.message()]].concat();
+                if provers_messages[i].clone().degree()
+                    <= degree_in_one_variable(verifier.polynomial.clone(), i)
+                {
+                    // generating a new random number
+                    random_challenges = [random_challenges, vec![verifier.message()]].concat();
+                }
             } else {
                 println!("Check in round {} failed", i + 1);
                 break;
