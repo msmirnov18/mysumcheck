@@ -3,9 +3,9 @@
 mod protocol;
 mod tests;
 
+use protocol::degree_in_one_variable;
 use protocol::hypercube;
 use protocol::run_sumcheck_protocol;
-use protocol::degree_in_one_variable;
 
 // Importing finite fields and polynomials from arkworks
 use ark_ff::fields::{Fp64, MontBackend, MontConfig};

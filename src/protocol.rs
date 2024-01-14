@@ -199,8 +199,13 @@ pub fn degree_in_one_variable<FF: Field + std::convert::From<i32>>(
         coordinates_part_2.push(FF::from(1))
     }
 
-    polynomial_partial_evaluate(polynomial, missing_coordinate, coordinates_part_1, coordinates_part_2).degree()
-
+    polynomial_partial_evaluate(
+        polynomial,
+        missing_coordinate,
+        coordinates_part_1,
+        coordinates_part_2,
+    )
+    .degree()
 }
 
 pub fn univariate_hypercube_evaluate<FF: Field + std::convert::From<i32>>(
